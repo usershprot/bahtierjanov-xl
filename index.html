@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bahtierjanov_xl — Free VPN by HiHiMods</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af, #515bd4);
+      background-size: 300% 300%;
+      animation: gradient 10s ease infinite;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+
+    p {
+      max-width: 400px;
+      font-size: 1rem;
+      line-height: 1.5;
+      opacity: 0.95;
+      margin-bottom: 25px;
+    }
+
+    button {
+      background-color: white;
+      color: #dd2a7b;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 30px;
+      padding: 12px 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #f1f1f1;
+      transform: scale(1.05);
+    }
+
+    .config-box {
+      margin-top: 25px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 15px;
+      word-wrap: break-word;
+      font-size: 0.9rem;
+      backdrop-filter: blur(6px);
+      max-width: 90%;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    a {
+      color: #fff;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>bahtierjanov_xl</h1>
+  <p>Бесплатный VPN от <strong>HiHiMods</strong>.  
+  Получите надёжный доступ к сети без ограничений —  
+  один конфиг VLESS для V2RayTun доступен каждому пользователю.</p>
+
+  <button onclick="getVPN()">Получить VPN</button>
+
+  <div class="config-box" id="configBox" style="display:none;"></div>
+
+  <footer>
+    © HiHiMods — Бесплатный VPN | TG: <a href="https://t.me/gloomdev">@gloomdev</a>
+  </footer>
+
+  <script>
+    const VPN_CONFIGS = [
+      "vless://bc4f49dc-2c50-49ac-b8fa-d3020a5e65de@91.99.188.109:443?security=none&encryption=none&host=zula.ir&headerType=http&type=tcp#VPNSexyVbot🖤",
+      "vless://df0680ca-e43c-498d-ed86-8e196eedd012@185.231.205.246:8880?security=none&encryption=none&type=grpc#VPNSexyVbot🖤",
+      "vless://1c22f9ec-4677-4a53-921a-a87c63df37d5@15.204.199.122:57403?security=none&encryption=none&headerType=none&type=tcp#VPNSexyVbot🖤",
+      "vless://2ac2a3ac-49ec-4cf1-90fd-252b7fad9fbe@51.195.119.204:80?security=none&encryption=none&type=ws&path=/vless/#VPNSexyVbot🖤",
+      "vless://0e8a6896-ad90-4a3b-89a3-77d64aa409e2@ilta-wzxrxkdhbjpnprhkkpplsjwawhssvollvxzdhqshiqckwdgrdm.orbnet.xyz:443?security=reality&encryption=none&pbk=YVDo7U4O-AT2fa5H9E7hyYHKgfZd1vB6UdbAf2ggWQE&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=i2pd.website&sid=55e6af1a35e64a98#VPNSexyVbot🖤",
+      "vless://49ed01ad-3bb4-204f-b0ff-a58f658fd618@5.181.171.10:443?security=reality&encryption=none&pbk=YNGotlyAx3ELUmi4lxOUjiEDmibqf1pPUTE9o3YYT2Y&headerType=none&fp=chrome&spx=%2F%40FREEV2RNG&type=tcp&flow=xtls-rprx-vision&sni=speed.cloudflare.com#VPNSexyVbot🖤",
+      "vless://1ae17c7d-6074-41e2-894b-478c9fcf5715@172.64.157.124:80?encryption=none&security=none&fp=chrome&allowInsecure=1&type=ws&host=rough-hill-2959-ppal03.fawik58803.workers.dev&path=%2F%3Fed%3D2560#VPNSexyVbot🖤",
+      "vless://d2dc2527-33d5-46f3-f39c-36da72fb1a62@54.37.205.0:59332?security=none&encryption=none&type=tcp&headerType=none#VPNSexyVbot🖤",
+      "vless://e917db16-e9b4-4aa7-8a77-617f5e82f1f8@172.67.112.55:8080?encryption=none&security=none&fp=chrome&allowInsecure=1&type=ws&host=816tg.3wzxh3.workers.dev&path=%2F%3Fed%3D2560#VPNSexyVbot🖤",
+      "vless://2737560d-1867-47fa-aa80-351c36d771c7@172.67.110.162:2052?encryption=none&security=none&type=ws&host=0118.kznyoum2.workers.dev&path=%2F%3Fed%3D2560#VPNSexyVbot🖤"
+    ];
+
+    function getVPN() {
+      const config = VPN_CONFIGS[Math.floor(Math.random() * VPN_CONFIGS.length)];
+      const box = document.getElementById("configBox");
+      box.style.display = "block";
+      box.textContent = config;
+    }
+  </script>
+</body>
+</html>
