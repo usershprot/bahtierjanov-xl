@@ -5,182 +5,65 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HiHiMods VPN</title>
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; font-family:'Helvetica Neue', sans-serif; }
-  body {
-    display:flex;
-    flex-direction:column;
-    min-height:100vh;
-    padding:20px;
-    transition:background-color 0.3s, color 0.3s;
-    justify-content:space-between;
-  }
-  body.dark { background-color:#121212; color:#FFFFFF; }
-  body.light { background-color:#F5F5F5; color:#121212; }
-
-  header {
-    width:100%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-  }
-
-  .logo { font-weight:700; font-size:1.5rem; }
-  .theme-btn {
-    font-size:1.5rem;
-    cursor:pointer;
-    background:none;
-    border:none;
-    transition:transform 0.2s;
-  }
-  .theme-btn:hover { transform:scale(1.2); }
-
-  main { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
-
-  p { font-size:1rem; line-height:1.5; max-width:400px; margin-bottom:20px; }
-
-  .config-box {
-    background-color:rgba(30,30,30,0.9);
-    padding:15px;
-    border-radius:20px;
-    margin-top:15px;
-    width:90%;
-    max-width:400px;
-    word-wrap:break-word;
-    font-size:0.9rem;
-    text-align:left;
-    display:none;
-  }
-  body.light .config-box { background-color:rgba(255,255,255,0.9); color:#121212; }
-
-  .time-box { font-size:0.8rem; opacity:0.7; margin-top:5px; }
-
-  .copy-success { background-color:#4CAF50 !important; color:#FFFFFF !important; }
-
-  footer {
-    margin-top:20px;
-    font-size:0.8rem;
-    opacity:0.7;
-    text-align:center;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:10px;
-  }
-
-  .btn {
-    border:none;
-    border-radius:25px;
-    padding:12px 25px;
-    font-size:1rem;
-    font-weight:600;
-    cursor:pointer;
-    margin:5px;
-    transition:0.3s;
-    box-shadow:0 4px 10px rgba(0,0,0,0.5);
-  }
-
-  .btn-dark { background-color:#1F1F1F; color:#FFD700; }
-  .btn-light { background-color:#FFFFFF; color:#121212; }
-
-  .btn:hover { transform:scale(1.05); }
-
-  .info-box {
-    text-align:center;
-    font-size:1rem;
-    margin-top:10px;
-    line-height:1.5;
-    opacity:0.9;
-  }
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Helvetica Neue',sans-serif;}
+  body{display:flex;flex-direction:column;min-height:100vh;padding:20px;justify-content:space-between;background:#121212;color:#fff;}
+  header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+  .logo{font-weight:700;font-size:1.5rem;}
+  main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+  p{font-size:1rem;line-height:1.5;max-width:400px;margin-bottom:20px;}
+  .config-box{background:rgba(30,30,30,0.9);padding:15px;border-radius:20px;margin-top:15px;width:90%;max-width:400px;word-wrap:break-word;font-size:0.9rem;text-align:left;display:none;}
+  .btn{border:none;border-radius:25px;padding:12px 25px;font-size:1rem;font-weight:600;cursor:pointer;margin:5px;transition:0.3s;box-shadow:0 4px 10px rgba(0,0,0,0.5);background:#1F1F1F;color:#FFD700;}
+  .btn:hover{transform:scale(1.05);}
+  footer{text-align:center;font-size:0.8rem;opacity:0.7;margin-top:20px;display:flex;flex-direction:column;align-items:center;gap:10px;}
 </style>
 </head>
-<body class="dark">
+<body>
 
 <header>
   <div class="logo">hihimods-vpn</div>
-  <button class="theme-btn" id="themeBtn">🌞</button>
 </header>
 
 <main>
-  <div class="info-box">
-    ⚡ <strong>Выбери VPN и будь свободен в сети.</strong><br>
-    🦊 HiHiMods — быстро. Бесплатно. Без границ.<br>
-    🔒 Безопасное соединение активируется одним нажатием.
-  </div>
+  <p><strong>Бесплатный VPN от HiHiMods</strong><br>Один конфиг VLESS для V2RayTun. Без ограничений по количеству запросов.</p>
 
   <div class="config-box" id="configBox"></div>
-  <div class="time-box" id="timeBox"></div>
+  <button class="btn" id="copyBtn" style="display:none;">📋 Скопировать</button>
 
-  <div id="buttonsContainer" style="display:none;">
-    <button class="btn btn-dark" id="copyBtn">📋 Скопировать</button>
-    <a href="instruction.html"><button class="btn btn-dark">📖 Инструкция подключения</button></a>
+  <div style="margin-top:15px;">
+    <button class="btn" id="getBtn">Получить VPN</button>
+    <button class="btn" onclick="location.href='instruction.html'">📘 Инструкция</button>
+    <button class="btn" onclick="location.href='faq.html'">❓ FAQ</button>
   </div>
 </main>
 
 <footer>
-  <button class="btn btn-dark" id="getBtn">Получить VPN</button>
-  © HiHiMods — Бесплатный VPN | TG: <a href="https://t.me/gloomdev">@gloomdev</a>
+  © 2025 HiHiMods — Бесплатный VPN | TG: <a href="https://t.me/gloomdev" style="color:#FFD700;">@gloomdev</a>
 </footer>
 
 <script>
-const VPN_CONFIGS = [
-  "vless://bc4f49dc-2c50-49ac-b8fa-d3020a5e65de@91.99.188.109:443?security=none&encryption=none&host=zula.ir&headerType=http&type=tcp#VPNSexyVbot🖤",
-  "vless://df0680ca-e43c-498d-ed86-8e196eedd012@185.231.205.246:8880?security=none&encryption=none&type=grpc#VPNSexyVbot🖤",
-  "vless://1c22f9ec-4677-4a53-921a-a87c63df37d5@15.204.199.122:57403?security=none&encryption=none&headerType=none&type=tcp#VPNSexyVbot🖤"
+const VPN_CONFIGS=[
+  "vless://bc4f49dc-2c50-49ac-b8fa-d3020a5e65de@91.99.188.109:443?security=none&encryption=none&host=zula.ir&type=tcp#HiHiMods🦊",
+  "vless://df0680ca-e43c-498d-ed86-8e196eedd012@185.231.205.246:8880?security=none&encryption=none&type=grpc#HiHiMods🦊",
+  "vless://1c22f9ec-4677-4a53-921a-a87c63df37d5@15.204.199.122:57403?security=none&encryption=none&type=tcp#HiHiMods🦊"
 ];
 
-function getVPN() {
-  const box = document.getElementById("configBox");
-  const timeBox = document.getElementById("timeBox");
-  const buttonsContainer = document.getElementById("buttonsContainer");
-
-  const config = VPN_CONFIGS[Math.floor(Math.random() * VPN_CONFIGS.length)];
+document.getElementById("getBtn").addEventListener("click",()=>{
+  const box=document.getElementById("configBox");
+  const copyBtn=document.getElementById("copyBtn");
+  const config=VPN_CONFIGS[Math.floor(Math.random()*VPN_CONFIGS.length)];
   box.style.display="block";
   box.textContent=config;
-  buttonsContainer.style.display="flex";
-  buttonsContainer.style.gap="10px";
-  buttonsContainer.style.flexWrap="wrap";
-  buttonsContainer.style.justifyContent="center";
-
-  const now = new Date();
-  const timeStr = now.toLocaleTimeString('ru-RU', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
-  timeBox.textContent = `Получено: ${timeStr}`;
-}
-
-document.getElementById("getBtn").addEventListener("click", getVPN);
-
-document.getElementById("copyBtn").addEventListener("click", async ()=>{
-  const text=document.getElementById("configBox").textContent;
-  const copyBtn=document.getElementById("copyBtn");
-  try{
-    await navigator.clipboard.writeText(text);
-    copyBtn.textContent="✅ Скопировано!";
-    copyBtn.classList.add("copy-success");
-    setTimeout(()=>{
-      copyBtn.textContent="📋 Скопировать";
-      copyBtn.classList.remove("copy-success");
-    },1500);
-  }catch(err){
-    alert("Ошибка при копировании");
-  }
+  copyBtn.style.display="inline-block";
 });
 
-// Переключение темы 🌞 / 🌙
-const themeBtn = document.getElementById("themeBtn");
-themeBtn.addEventListener("click", ()=>{
-  const body = document.body;
-  const buttons = document.querySelectorAll(".btn");
-  if(body.classList.contains("dark")) {
-    body.classList.remove("dark");
-    body.classList.add("light");
-    themeBtn.textContent = "🌙";
-    buttons.forEach(b=>{b.classList.remove("btn-dark"); b.classList.add("btn-light");});
-  } else {
-    body.classList.remove("light");
-    body.classList.add("dark");
-    themeBtn.textContent = "🌞";
-    buttons.forEach(b=>{b.classList.remove("btn-light"); b.classList.add("btn-dark");});
-  }
+document.getElementById("copyBtn").addEventListener("click",async()=>{
+  const text=document.getElementById("configBox").textContent;
+  const btn=document.getElementById("copyBtn");
+  try{
+    await navigator.clipboard.writeText(text);
+    btn.textContent="✅ Скопировано!";
+    setTimeout(()=>btn.textContent="📋 Скопировать",1500);
+  }catch(e){alert("Ошибка при копировании");}
 });
 </script>
 </body>
